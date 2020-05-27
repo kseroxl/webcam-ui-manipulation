@@ -1,4 +1,4 @@
-# TensorFlow.js Example: Transfer Learning to play Pacman via the Webcam
+# TensorFlow.js Example: Manipulating User Interface using webcam
 
 This example shows you how to predict poses from a webcam using transfer
 learning.
