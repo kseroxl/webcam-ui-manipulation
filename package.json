@@ -21,8 +21,8 @@
   },
   "scripts": {
     "watch": "cross-env NODE_ENV=development parcel index.html --no-hmr --open",
-    "start": "cross-env NODE_ENV=development parcel index.html --no-hmr --open",
-    "build": "cross-env NODE_ENV=production parcel build index.html  --no-minify --public-url ./",
+    "start": "node node_modules/cross-env/dist/bin/cross-env.js NODE_ENV=development parcel index.html --no-hmr --open",
+    "build": "node node_modules/cross-env/dist/bin/cross-env.js NODE_ENV=production parcel build index.html  --no-minify --public-url ./",
     "heroku-postbuid": "cross-env NODE_ENV=development parcel index.html --no-hmr --open",
     "link-local": "yalc link"
   },
