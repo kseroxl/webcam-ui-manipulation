@@ -1,0 +1,460 @@
+/**
+ * Copyright 2018 Google LLC. All Rights Reserved.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ * =============================================================================
+ */
+
+html,
+body {
+  font-family: "Roboto", sans-serif;
+  margin: 0;
+  padding: 0;
+}
+body {
+  display: flex;
+  flex-direction: column;
+}
+button:focus {
+  outline: 0;
+}
+
+/** Page header. **/
+header {
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  color: #14213d;
+  font-size: 30px;
+  font-weight: 300;
+  line-height: 1.45em;
+  overflow: hidden;
+  padding: 20px 0;
+  position: relative;
+  text-align: center;
+  -webkit-font-smoothing: antialiased;
+}
+header b {
+  font-weight: 400;
+}
+
+#error {
+  padding: 5px 10px;
+  background-color: rgba(255, 0, 0, 0.8);
+  color: #fff;
+  position: absolute;
+  top: 13vh;
+  right: 10px;
+  display: none;
+  cursor: pointer;
+}
+
+/** Loading message. */
+#status {
+  font-weight: 300;
+  margin: 12px 0;
+  text-align: center;
+}
+
+h4 {
+  text-align: center;
+  transform: translateY(50%);
+  margin-bottom: 50px;
+}
+
+.step {
+  position: absolute;
+  top: 15vh;
+  left: 0;
+  padding: 5px 5px 5px 20px;
+  background-color: #00b4d8;
+  color: #fff;
+  font-size: 1.2rem;
+  border-bottom-right-radius: 25px;
+  border-top-right-radius: 25px;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  box-sizing: border-box;
+}
+
+.step span,
+#timer {
+  background-color: #fff;
+  color: #00b4d8;
+  font-weight: 600;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 40px;
+  height: 40px;
+  line-height: 1.5rem;
+  margin-left: 10px;
+}
+
+#timer {
+  position: absolute;
+  right: 10px;
+  top: 13vh;
+  background-color: #f6bd60;
+  color: black;
+  display: none;
+}
+
+#instruction-text {
+  font-size: 1.1rem;
+  line-height: 2rem;
+}
+
+#next,
+.playBtn {
+  position: absolute;
+  bottom: 5vh;
+  left: 50%;
+  transform: translateX(-50%);
+  margin-top: 20px;
+  padding: 10px 35px;
+  border: 2px solid #00b4d8;
+  background-color: #fff;
+}
+
+.train-model-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.corner {
+  position: absolute;
+  right: 20px;
+  bottom: 20px;
+  align-items: flex-end;
+}
+
+.cross {
+  display: inline-block;
+  margin-left: 30px;
+  color: #fff;
+}
+
+.playBtn {
+  bottom: 45%;
+  color: #fff;
+  background-color: #00b4d8;
+  padding: 20px;
+}
+
+#next span {
+  color: #00b4d8;
+}
+
+#predict,
+#next {
+  display: none;
+}
+
+.container {
+  width: 100vw;
+}
+
+.instruction {
+  position: absolute;
+  top: 20vh;
+  left: 0;
+  width: 25vw;
+  padding: 25px;
+}
+
+.game-container {
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  width: 40vw;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  display: none;
+  text-align: center;
+}
+
+.game-container p {
+  width: 30vw;
+  margin: 0 auto;
+  padding: 15px;
+  font-size: 2rem;
+  font-weight: 700;
+  background-color: #00b4d8;
+  color: #fff;
+}
+
+/** Controls. **/
+.controller-panels {
+  display: flex;
+  flex-direction: row;
+  margin: 9px auto 0;
+}
+.panel {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  flex-shrink: 0;
+}
+.panel-row {
+  display: flex;
+  flex-direction: row;
+}
+
+.panel-cell p {
+  color: #8b8b8b;
+  font-size: 10px;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+}
+.controller-panels button {
+  background: none;
+  border: none;
+  box-sizing: border-box;
+  cursor: pointer;
+  margin: 0;
+  padding: 0;
+}
+#train-status {
+  width: 124px;
+}
+
+/** Training panel. **/
+.big-buttons {
+  justify-content: space-between;
+}
+.big-buttons button {
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  background-color: #00b4d8;
+  border: none;
+  /* padding: 5px 0; */
+  margin-right: 10px;
+}
+.big-buttons button span {
+  color: #fff;
+  display: inline-block;
+  font-size: 16px;
+  font-weight: 500;
+  padding: 9px 13px;
+  text-align: center;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+.params-webcam-row {
+  align-items: flex-start;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-top: 35px;
+}
+.webcam-box-outer {
+  background: #00b4d8;
+  border: 1px solid #00b4d8;
+  box-sizing: border-box;
+  display: inline-block;
+  padding: 3px;
+  margin-left: 50px;
+}
+.webcam-box-inner {
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  overflow: hidden;
+  width: 160px;
+}
+#webcam {
+  height: 160px;
+  transform: scaleX(-1);
+}
+.hyper-params {
+  display: flex;
+  flex-direction: column;
+  margin-left: 12px;
+}
+.dropdown {
+  flex-direction: column;
+  width: 110px;
+  margin-bottom: 10px;
+}
+.dropdown label {
+  color: #777;
+  font-size: 11px;
+  display: block;
+  font-weight: 300;
+  line-height: 1;
+}
+.dropdown .select {
+  position: relative;
+}
+.dropdown .select select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background: none;
+  border: none;
+  border-bottom: solid 1px #00b4d8;
+  border-radius: 0;
+  color: #c9c9c9;
+  display: block;
+  font-size: 12px;
+  outline: none;
+  padding: 6px 0;
+  width: 100%;
+}
+.dropdown .select::after {
+  content: "arrow_drop_down";
+  color: #999;
+  font-family: "Material Icons";
+  font-weight: normal;
+  font-style: normal;
+  font-size: 18px;
+  line-height: 1;
+  letter-spacing: normal;
+  text-transform: none;
+  display: inline-block;
+  white-space: nowrap;
+  word-wrap: normal;
+  direction: ltr;
+  position: absolute;
+  right: 0;
+  top: 6px;
+  pointer-events: none;
+}
+
+/** Joystick panel. **/
+.joystick-panel {
+  margin-top: 13px;
+}
+.panel-cell .help-text {
+  font-size: 10px;
+  font-style: italic;
+  left: 0;
+  line-height: 1.1;
+  margin: 0;
+  padding: 0;
+  text-align: left;
+  top: 0;
+  position: absolute;
+}
+
+.thumb-box {
+  display: inline-block;
+  margin-left: 20px;
+  position: relative;
+}
+.thumb-box-outer {
+  background: black;
+  border: 1px solid #585858;
+  box-sizing: border-box;
+  display: inline-block;
+  padding: 9px;
+  position: relative;
+  transition: box-shadow 0.3s;
+}
+.answer-tag {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  color: #fff;
+  background-color: #00b4d8;
+  padding: 3px;
+  font-size: 0.9rem;
+  z-index: 10;
+}
+.thumb-box-inner {
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  overflow: hidden;
+  width: 66px;
+}
+.thumb {
+  height: 66px;
+  transform: scaleX(-1);
+}
+.thumb-box-outer .record-button {
+  height: 100%;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 100%;
+}
+.thumb-box-outer .record-button span {
+  background: #111;
+  border: 1px solid #585858;
+  border-radius: 3px;
+  bottom: 9px;
+  color: #f8f8f8;
+  display: block;
+  font-size: 8px;
+  left: 9px;
+  position: absolute;
+  right: 9px;
+  opacity: 0.5;
+}
+
+.choices {
+  list-style: none;
+  padding: 0;
+  margin: 20px auto;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.choices li {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 40px;
+  height: 40px;
+  text-align: center;
+  padding: 15px;
+  margin: 10px;
+  font-size: 1.6rem;
+  background-color: #f6bd60;
+  color: #fff;
+  position: relative;
+}
+
+button {
+  cursor: pointer;
+}
+
+/** Footer. **/
+#copyright {
+  color: #f8f8f8;
+  font-weight: 300;
+  margin: 12px 0;
+  text-align: center;
+}
+
+#no-webcam {
+  display: none;
+  text-align: center;
+  font-size: 30px;
+  color: white;
+  padding: 30px;
+  line-height: 30px;
+}
+
+
+/*# sourceMappingURL=/styles.8986bff4.css.map */
