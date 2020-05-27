@@ -1,4 +1,4 @@
-# TensorFlow.js Example: Manipulating User Interface using webcam
+# Manipulating User Interface using webcam and TensorFlow.js
 
 This example shows you how to predict poses from a webcam using transfer
 learning.
