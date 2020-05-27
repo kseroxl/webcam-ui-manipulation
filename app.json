@@ -1,0 +1,38 @@
+{
+  "name": "Webcam ui manipulation",
+  "description": "Manipulating User Interface using webcam and TensorFlow.js",
+  "keywords": ["webcam", "ui", "js", "javascript", "tensorflow", "HTML5"],
+  "repository": "https://github.com/kseroxl/webcam-ui-manipulation.git",
+  "success_url": "/app",
+  "scripts": {
+    "postdeploy": "cross-env NODE_ENV=development parcel index.html --no-hmr --open"
+  },
+  "env": {
+    "SECRET_TOKEN": {
+      "description": "A secret key for verifying the integrity of signed cookies.",
+      "generator": "secret"
+    },
+    "WEB_CONCURRENCY": {
+      "description": "The number of processes to run.",
+      "value": "5"
+    }
+  },
+  "formation": {
+    "web": {
+      "quantity": 1,
+      "size": "standard-1x"
+    }
+  },
+  "buildpacks": [
+    {
+      "url": "https://github.com/stomita/heroku-buildpack-phantomjs"
+    }
+  ],
+  "environments": {
+    "test": {
+      "scripts": {
+        "test": "bundle exec rake test"
+      }
+    }
+  }
+}
