@@ -39361,7 +39361,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.steps = void 0;
-var steps = ["1. Bla bla bla.\n    2. Bla bla bla.\n    3. Bla bla bla.\n    4. Bla bla bla.\n    5. Bla bla bla.", "1. Bla bla bla.\n    2. Bla bla bla.\n    3. Bla bla bla.\n    4. Bla bla bla.\n    5. Bla bla bla.", "1. Bla bla bla.\n    2. Bla bla bla.\n    3. Bla bla bla.\n    4. Bla bla bla.\n    5. Bla bla bla."];
+var steps = ["1. Show a gesture to initiate an answer\n   2. Click on the frame to add some examples\n   3. Repeat to have a better-trained model\n   4. Train the model\n   5. Wait some seconds\n   5. Click \"Next\"", "1. After clicking this button you will start a mathematical test\n   2. You will have 8 seconds for each question\n   3. Show sign that represents an equated answer to answer the question", "1. Enjoy the game :)"];
 exports.steps = steps;
 },{}],"index.js":[function(require,module,exports) {
 "use strict";
